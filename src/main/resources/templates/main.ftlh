@@ -11,20 +11,32 @@
     <a class="btn btn-primary mb-3" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
         Add new message
     </a>
-    <div class = "collapse" id="collapseExample">
+    <div class = "collapse <#if message??>show</#if>" id="collapseExample">
         <form method="post" enctype="multipart/form-data">
-            <div class="input-group">
-                <input class="form-control mb-3" type = "text" name = "text" placeholder="Введите сообщение" />
+            <div class="form-group mb-3">
+                <input type="text" class="form-control ${(textError??)?string('is-invalid', '')}"
+                       value="<#if message??>${message.text}</#if>" name="text" placeholder="Введите сообщение" />
+                <#if textError??>
+                <div class="invalid-feedback">
+                    ${textError}
+                </div>
+                </#if>
             </div>
-            <div class="input-group">
-                <input class="form-control mb-3" type = "text" name = "tag" placeholder="Тэг" />
+            <div class="form-group mb-3">
+                <input type="text" class="form-control"
+                       value="<#if message??>${message.tag}</#if>" name="tag" placeholder="Тэг">
+                <#if tagError??>
+                    <div class="invalid-feedback">
+                        ${tagError}
+                    </div>
+                </#if>
             </div>
-            <div class="input-group">
-                <input class="form-control mb-3" type = "file" name = "file">
+            <div class="input-group mb-3">
+                <input class="form-control" type = "file" name = "file">
             </div>
-            <div class="input-group">
+            <div class="input-group mb-3">
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                <button class="btn btn-primary mb-3" type = 'submit'>Добавить</button>
+                <button class="btn btn-primary" type = 'submit'>Добавить</button>
             </div>
         </form>
     </div>
