@@ -43,7 +43,9 @@
                 </div>
             </div>
         <#else>
-            No messages
+            <div class="m-2">
+                <span>No messages</span>
+            </div>
         </#list>
     </div>
 </@c.page>
