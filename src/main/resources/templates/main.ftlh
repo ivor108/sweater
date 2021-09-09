@@ -42,7 +42,7 @@
     </div>
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <#list messages as message>
-            <div class="card my-3">
+            <div class="card">
                 <#if message.filename??>
                     <img src="${message.filename}" class="card-img-top" />
                 </#if>

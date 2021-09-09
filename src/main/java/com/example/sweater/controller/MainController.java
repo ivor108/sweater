@@ -37,7 +37,7 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String main(@RequestParam(required = false, defaultValue = "") String filter,  Model model){
+    public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
         Iterable<Message> messages = messageRepo.findAll();
 
         if(filter != null && !filter.isEmpty()){
@@ -66,7 +66,6 @@ public class MainController {
 
             model.mergeAttributes(errorsMap);
             model.addAttribute("message", message);
-
         } else {
             if (file != null && !file.getOriginalFilename().isEmpty()) {
                 File uploadDir = new File(uploadPath);
@@ -87,12 +86,11 @@ public class MainController {
 
             messageRepo.save(message);
         }
+
         Iterable<Message> messages = messageRepo.findAll();
 
         model.addAttribute("messages", messages);
 
         return "main";
     }
-
-
 }
